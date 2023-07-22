@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "645494d5a5e2e98b22391cca"
+  },
+  "name": "rakesh",
+  "htNo": "21031F0018",
+  "age": 22,
+  "branch": "mca",
+  "Boarder": "yes",
+  "boarder": ""
+},{
+  "_id": {
+    "$oid": "645495c5a5e2e98b22391ccb"
+  },
+  "name": "giri",
+  "htNo": "21031F0018",
+  "age": 24,
+  "branch": "mca",
+  "Boarder": "yes"
+},{
+  "_id": {
+    "$oid": "645495c5a5e2e98b22391ccc"
+  },
+  "name": "akhil",
+  "htNo": "21031F0017",
+  "age": 24,
+  "branch": "mca",
+  "Boarder": "yes"
+},{
+  "_id": {
+    "$oid": "64549eaba5e2e98b22391ccd"
+  },
+  "name": "shiva rama krishna",
+  "htNo": "21031F0012",
+  "age": 22,
+  "branch": "mca",
+  "Boarder": "yes"
+}]
