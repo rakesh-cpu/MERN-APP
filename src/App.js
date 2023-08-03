@@ -4,8 +4,11 @@ import { Layout, Typography, Space } from 'antd';
 
 import { Exchanges, Homepage, News, Cryptocurrencies, CryptoDetails, Navbar } from './components';
 import './App.css';
-
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+const isLoggedIn = true;
 const App = () => (
+  
   <div className="app">
     <div className="navbar">
       <Navbar />
@@ -29,9 +32,17 @@ const App = () => (
             <Route exact path="/news">
               <News />
             </Route>
+            <Route exact path="/signin">
+              <SignIn />
+           </Route>
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
           </Switch>
         </div>
       </Layout>
+      
+      <div className="footer-containter">
       <div className="footer">
         <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>Copyright © 2023
           <Link to="/">
@@ -44,6 +55,7 @@ const App = () => (
           <Link to="/exchanges">Exchanges</Link>
           <Link to="/news">News</Link>
         </Space>
+      </div>
       </div>
     </div>
   </div>
