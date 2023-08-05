@@ -2,17 +2,31 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Col, Row, Typography } from 'antd';
+import { BarElement, LinearScale,PointElement,LineElement} from 'chart.js';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement
+);
 
 const { Title } = Typography;
 
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
+  console.log(coinHistory)
   const coinPrice = [];
   const coinTimestamp = [];
-
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
     coinPrice.push(coinHistory?.data?.history[i].price);
   }
 
+  console.log(coinPrice[1])
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
     coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
   }
@@ -20,7 +34,7 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
     labels: coinTimestamp,
     datasets: [
       {
-        label: 'Price In USD',
+        label: 'Price In Rupees',
         data: coinPrice,
         fill: false,
         backgroundColor: '#0071bd',
