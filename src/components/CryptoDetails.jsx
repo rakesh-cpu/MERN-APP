@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import axios from "axios";
 import HTMLReactParser from "html-react-parser";
 import { useParams } from "react-router-dom";
 import millify from "millify";
@@ -27,20 +28,55 @@ const { Option } = Select;
 
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  const { timePeriod, settimePeriod } = useState("7d");
+  const [ timePeriod, settimePeriod ] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
-  const { data:coinHistory ,isLoading } = useGetCryptoHistoryQuery(coinId,timePeriod);
-  if(isLoading)
-  {
-    console.log("loading...");
-    return <div>Loading....</div>
-  }
+  // const { data:coinHistory ,isLoading,isUninitialized } = useGetCryptoHistoryQuery(coinId,timePeriod);
+  // if(isLoading)
+  // {
+  //   return <div>Loading....</div>
+  // }
+  // if(isUninitialized) return <div>failed</div>
+  // console.log("here is the timeperiod",timePeriod)
+  const [coinHistory,setCoinHistory] = useState([]);
+  const [isLoading,setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchCoinHistory = async () => {
+      const options = {
+        method: 'GET',
+        url: `https://coinranking1.p.rapidapi.com/coin/${coinId}/history`, 
+        params: {
+          referenceCurrencyUuid: 'yhjMzLPhuIDl', 
+          timePeriod: timePeriod, 
+        },
+        headers: {
+          'X-RapidAPI-Key': 'e3bdc0e3e6mshabcee6861650d4ap19d52bjsn608337d46ee4',
+          'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+        }
+      };
+      
+      try {
+        const response = await axios.request(options);
+        
+        setCoinHistory(response.data);
+        setIsLoading(false);
+        console.log("Data fetched successfully", response.data);
+      } catch (error) {
+        console.error("Error fetching crypto history:", error);
+        setIsLoading(false);
+      }
+    };
 
+    fetchCoinHistory();
+  }, [coinId, timePeriod]);
+
+
+
+
+  console.log("coin history",coinHistory)
   const cryptoDetails = data?.data?.coin;
 
-  if (!cryptoDetails) return <div>No data found</div>;
+  if (!cryptoDetails) return <div><Loader/></div>;
 
-  console.log(data);
 
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
@@ -114,12 +150,12 @@ const CryptoDetails = () => {
 
   return (
     <>
-      <h1> cryptodetails {coinId}</h1>
+      
       <div>
         <Col className="coin-details-container">
           <Col className="coin-heading-container">
             <Title level={2} className="coin-name">
-              {cryptoDetails?.name} ({cryptoDetails.slug}) price
+              {cryptoDetails?.name} ({cryptoDetails?.slug}) price
             </Title>
             <p>
               {cryptoDetails?.name} live price in Indian rupees. View value
