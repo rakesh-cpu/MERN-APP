@@ -14,6 +14,7 @@ const Home = () => {
     if(isFetching) return 'Loading...';
     return (
         <>
+        <div style={{ background: '#f0f0f0', padding: '20px' }}>
           <Title level={2} className="heading" style={{color:'red',textAlign:'center'}}>Global Cryptography Statistics</Title>
           <Row style={{textAlign:'center'}}>
             <Col span={12}><Statistic title='Total Exchanges' value={globalStats.total}/></Col>
@@ -23,6 +24,7 @@ const Home = () => {
             <Col span={12}><Statistic title='Total Cryptocurrencies' value={millify(globalStats.totalMarkets)}/></Col>
 
           </Row>
+          </div>
           <div className='home-heading-container'>
             <Title level={2} className='home-title'>Top 10 Cryptocurrencies in the world</Title>
             <Title level={3} className='show-more'><Link to='/cryptocurrencies'>Show More</Link></Title>

@@ -27,8 +27,15 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   }
 
   console.log(coinPrice[1])
+  // for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+  //   coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
+  // }
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
-    coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
+    const unixTimestampSeconds = coinHistory?.data?.history[i].timestamp; // Assuming this is in seconds
+    const dateObject = new Date(unixTimestampSeconds * 1000); // Convert seconds to milliseconds
+  
+    const dateString = dateObject.toLocaleDateString(); // Convert to readable date format
+    coinTimestamp.push(dateString);
   }
   const data = {
     labels: coinTimestamp,
