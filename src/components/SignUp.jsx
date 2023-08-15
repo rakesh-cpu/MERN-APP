@@ -45,7 +45,7 @@ function SignUp(props) {
                     <input type="password" placeholder="Enter Password" name="password" onChange={handleForm} required />
                     <p>confirm password</p>
                     <input type="password" placeholder="Enter Password" name="cpassword" onChange={handleForm} required />
-                    <button type="submit" onClick={()=>props.history.push('/Homepage')}>Sign Up</button>
+                    <button type="submit" onClick={()=>props.history.push('/Homepage.jsx')}>Sign Up</button>
                     <p>Already have an account? <a href="/signin">Sign In</a>.</p>
                 </Form>
             </div>

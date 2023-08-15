@@ -387,16 +387,7 @@ width: 70%;
     
 }
 
-.SignUp-container{
-    margin: 100px;
-    display: flex;
-    justify-content: center;
-}
 
-.signup-data{
-    font-size: large;
-    margin: 50px;
-}
 
 
 /* SignIn.css */
