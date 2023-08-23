@@ -23,7 +23,7 @@
 			try {
 				const url = "http://localhost:8080/api/users";
 				const { data: res } = await axios.post(url, data);
-				navigate("/Login");
+				navigate("/signin");
 				console.log(res.message);
 			} catch (error) {
 				if (
@@ -40,7 +40,7 @@
 			<div className={styles.signup_container}>
 				<div className={styles.signup_form_container}>
 					<div className={styles.left}>
-						<h1>Welcome Back</h1>
+						<h1>already hava an account ?</h1>
 						<Link to="/signin">
 							<button type="button" className={styles.white_btn}>
 								Sing in
