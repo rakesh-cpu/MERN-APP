@@ -7,6 +7,7 @@ import { HeartFilled } from '@ant-design/icons';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import Loader from './Loader';
+import { addToCart } from '../App/cardSlice';
 
 const Cryptocurrencies = ({ simplified }) => {
   const count = simplified ? 10 : 100;
@@ -65,14 +66,18 @@ const Cryptocurrencies = ({ simplified }) => {
                 <p>Price: {millify(currency.price)}</p>
                 <p>Market Cap: {millify(currency.marketCap)}</p>
                 <p>Daily Change: {currency.change}%</p>
-                {isHovered===currency?.uuid && (
+                {/* {isHovered===currency?.uuid && (
                   <Button type="primary" className='watchlist-button'>
                     <HeartFilled />
                   </Button>
-                )}
+                )} */}
               
               </Card>
+
             </Link>
+            <button className="watchlist-button" 
+               onClick={()=>addToCart(currency.uuid)}
+               >Add to Watchlist</button>
           </Col>
         ))}
       </Row>
