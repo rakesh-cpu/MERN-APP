@@ -10,6 +10,7 @@
 			lastName: "",
 			email: "",
 			password: "",
+		
 		});
 		const [error, setError] = useState("");
 		const navigate = useNavigate();

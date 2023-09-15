@@ -7,7 +7,10 @@ import { HeartFilled } from '@ant-design/icons';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import Loader from './Loader';
-import { addToCart } from '../App/cardSlice';
+// import { addToCart } from '../App/cartSlice';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../App/cartSlice';
+
 
 const Cryptocurrencies = ({ simplified }) => {
   const count = simplified ? 10 : 100;
@@ -15,6 +18,8 @@ const Cryptocurrencies = ({ simplified }) => {
   const [cryptos, setCryptos] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [isHovered,setisHovered] = useState(null);
+
+  const dispatch = useDispatch();
 
   const handleMouseEnter = (currencyId) =>{
     setisHovered(currencyId);
@@ -33,6 +38,12 @@ const Cryptocurrencies = ({ simplified }) => {
   }, [cryptosList, searchTerm]);
 
   if (isFetching) return <Loader />;
+
+  const Cart = (product) => {
+    dispatch(addToCart(product));
+  };
+
+
 
   return (
     <>
@@ -76,7 +87,7 @@ const Cryptocurrencies = ({ simplified }) => {
 
             </Link>
             <button className="watchlist-button" 
-               onClick={()=>addToCart(currency.uuid)}
+               onClick={()=>Cart(currency.uuid)}
                >Add to Watchlist</button>
           </Col>
         ))}
